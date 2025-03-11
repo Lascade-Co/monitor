@@ -5,7 +5,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - MAPPINGS=${HOST}=grafana:3000,loki.${HOST}=loki:3100
+      - MAPPINGS=${HOST}=grafana:3000,loki.${HOST}=loki:3100,prometheus.${HOST}=prometheus:9090
       - SSL_ENABLED=true
       - DEBUG=true
     volumes:
@@ -25,8 +25,6 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
       - "--web.enable-lifecycle"
-    ports:
-      - "9090:9090"
     depends_on:
       - alertmanager
     networks:
@@ -40,8 +38,6 @@ services:
       - alertmanager_data:/alertmanager
     command:
       - "--config.file=/etc/alertmanager/alertmanager.yml"
-    ports:
-      - "9093:9093"
     networks:
       - monitoring
 

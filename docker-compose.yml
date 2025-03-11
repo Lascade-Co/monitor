@@ -41,10 +41,24 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on:
       - prometheus
+      - loki
     ports:
       - "3000:3000"
     networks:
       - monitoring
+
+  loki:
+    image: grafana/loki:2.8.2
+    container_name: loki
+    command: -config.file=/etc/loki/loki-config.yaml
+    volumes:
+      - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml:ro
+      - loki_data:/loki
+    ports:
+      - "3100:3100"
+    networks:
+      - monitoring
+
 
 networks:
   monitoring:
@@ -54,3 +68,4 @@ volumes:
   prometheus_data:
   alertmanager_data:
   grafana_data:
+  loki_data:

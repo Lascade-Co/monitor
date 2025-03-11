@@ -50,11 +50,8 @@ services:
   loki:
     image: grafana/loki:2.8.2
     container_name: loki
-    # Use "-target=loki" to disable the compactor and other modules you don't need
-    command: -config.file=/etc/loki/loki-config.yaml -target=loki
     volumes:
       - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml:ro
-      - loki_data:/loki
     ports:
       - "3100:3100"
     networks:
@@ -69,4 +66,3 @@ volumes:
   prometheus_data:
   alertmanager_data:
   grafana_data:
-  loki_data:

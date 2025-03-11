@@ -12,6 +12,7 @@ services:
     volumes:
       - certs:/etc/letsencrypt/
       - ./loki.3100.conf:/app/loki.3100.conf:ro
+      - ./prom.9090.conf:/app/prom.9090.conf:ro
       - ./.htpasswd:/etc/nginx/.htpasswd:ro
     networks:
       - monitoring

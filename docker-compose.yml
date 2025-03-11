@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   nginx:
     image: rohittp0/nginx-secure:latest

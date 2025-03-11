@@ -1,0 +1,17 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: 'default'
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+
+receivers:
+  - name: 'default'
+    slack_configs:
+      - send_resolved: true
+        channel: '#my-alerts'
+        username: 'Alertmanager'
+        icon_emoji: ':exclamation:'
+        api_url: 'https://hooks.slack.com/services/XXX/YYY/ZZZ'

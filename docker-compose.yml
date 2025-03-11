@@ -10,7 +10,7 @@ services:
       - DEBUG=true
     volumes:
       - certs:/etc/letsencrypt/
-      - ./default.conf.template:/app/default.conf.template:ro
+      - ./loki.3100.conf:/app/loki.3100.conf:ro
       - ./.htpasswd:/etc/nginx/.htpasswd:ro
     networks:
       - monitoring

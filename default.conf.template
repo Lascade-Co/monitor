@@ -7,12 +7,6 @@ server {
     # Use Docker's internal DNS resolver
     resolver 127.0.0.11 valid=10s;
 
-    # Map auth conditionally based on proxy_host
-    map $proxy_host $auth_required {
-        default off;
-        "loki.monitor.lascade.com" on;
-    }
-
     location / {
         auth_basic "Restricted Area";
         auth_basic_user_file /etc/nginx/.htpasswd;
